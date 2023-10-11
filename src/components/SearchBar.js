@@ -1,14 +1,27 @@
+import { useState } from 'react';
+
 function SearchBar ({onSubmit}) {
+    // Creating a new piece of state
+    const[term, setTerm] = useState('');
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        onSubmit('cars');
+        onSubmit(
+            'cars'
+        );
+    };
+
+    const handleChange = (event) => {
+        // Updates our state
+        // Everytime user enters a string, it causes our component to update
+        setTerm(event.target.value);
     };
 
     return (
         <div>
             <form onSubmit= {handleFormSubmit}>
-                <input />
+                <input value= {term} onChange={handleChange} />
             </form>
         </div>
     );
@@ -28,3 +41,5 @@ export default SearchBar;
 // event.preventDefault(); --> disables all the form input collection
 
 // {onSubmit} --> reference to event handler thta's being created inside parent component
+
+// <input value= {term} --> passes your state to the input as the value prop
